@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="./lib/boostrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <title>Nhóm 4 | Bán hàng nội thất</title>
+  </head>
+  <body>
+    <div id="root">
+      <header class="py-3">
+        <div class="container pb-3">
+          <div class="row w-100 align-items-center gx-0">
+            <div class="col-lg-3">
+              <a href="index.html" class="navbar-brand">Interior<span>.</span></a>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+              <form action="#" method="get">
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control border-0"
+                    name="search"
+                    placeholder="Nhập tên sản phẩm cần tìm..."
+                    required />
+                  <div class="input-group-text bg-primary">
+                    <button type="submit" class="btn btn-primary bg-primary border-0">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-3 text-end d-none d-lg-block">
+              <div class="list-inline mt-3">
+                <a
+                  href="#"
+                  class="list-inline-item pe-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#userModal">
+                  <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="view_cart.html" class="list-inline-item position-relative">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                    0
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-light">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item me-4">
+                  <a class="nav-link px-0" href="index.html">Trang chủ</a>
+                </li>
+                <li class="nav-item me-4 dropdown">
+                  <a class="nav-link px-0 dropdown-toggle" href="#" aria-expanded="false">
+                    Danh mục sản phẩm
+                  </a>
+                  <ul class="dropdown-menu shadow">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item me-4">
+                  <a class="nav-link px-0" href="#products__features">Sản phẩm bán chạy</a>
+                </li>
+                <li class="nav-item me-4">
+                  <a class="nav-link px-0" href="contact.html">Liên hệ</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="userModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng Nhập</h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="#" method="post">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="form-control rounded"
+                      placeholder="example@gmail.com"
+                      required />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu:</label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      class="form-control rounded"
+                      required />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <p>Bạn chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="position-fixed messenger__icon bg-primary">
+        <a href="https://www.facebook.com/trlinh31.01.02/">
+          <i class="fa-brands fa-facebook-messenger"></i>
+        </a>
+      </div>
+      <section class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Danh mục sản phẩm</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tên sản phẩm</li>
+          </ol>
+        </nav>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <img
+              src="./assets/images/pro_1.png"
+              class="object-fit-cover"
+              width="100%"
+              height="500"
+              alt="" />
+          </div>
+          <div class="col-md-6">
+            <h1 class="pb-3">Tên sản phẩm</h1>
+            <div class="d-flex align-items-center justify-content-between pb-3">
+              <h5>
+                $1000
+                <small class="fw-light fs-6 text-decoration-line-through px-2" style="opacity: 0.6">
+                  $1200
+                </small>
+                <span class="badge bg-danger">-10%</span>
+              </h5>
+            </div>
+            <p>Danh mục sản phẩm: Sofa</p>
+            <p>
+              <strong>Mô tả:</strong> Sofa Miami khoác lên mình một màu xám tinh tế, tối giản, mang
+              đến không gian phòng khách hiện đại, trang nhã. Sofa Miami 2 chỗ vải xám sử dụng khung
+              gỗ bọc vải kết hợp cùng với phần nệm ngồi có thể tháo rời, dễ dàng vệ sinh hiệu quả.
+            </p>
+            <div class="d-flex column-gap-3">
+              <form action="#" method="post">
+                <input type="hidden" name="product__id" />
+                <button type="submit" class="btn btn-primary text-uppercase rounded-0">
+                  Mua ngay
+                </button>
+              </form>
+              <form action="#" method="post">
+                <input type="hidden" name="product__id" />
+                <button type="submit" class="btn btn-outline-primary text-uppercase rounded-0">
+                  Thêm vào giỏ hàng
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-3 rounded-4">
+          <h1 class="text-uppercase pb-3">Bình luận</h1>
+          <form action="#" method="post">
+            <div class="row w-50 mb-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Họ và tên" />
+              </div>
+              <div class="col-md-6">
+                <input type="number" class="form-control" placeholder="Số điện thoại" />
+              </div>
+            </div>
+            <div class="row w-50 mb-3">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="comments"
+                  rows="3"
+                  placeholder="Mời bạn bình luận cảm xúc về sản phẩm.."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+          </form>
+          <hr />
+          <ul>
+            <li>
+              <h6>Nguyen Van A</h6>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque accusantium nemo
+                accusamus. Itaque, esse doloribus.
+              </p>
+            </li>
+            <li>
+              <h6>Nguyen Van B</h6>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque accusantium nemo
+                accusamus. Itaque, esse doloribus.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <footer class="text-center bg-white text-lg-start text-muted mt-5">
+        <div class="container text-center text-md-start pt-3">
+          <div class="row mt-3">
+            <div class="col-3 mb-4">
+              <h6 class="text-uppercase fw-bold mb-4">Nhóm 4</h6>
+              <p>Đề tài: <strong>Xây dựng Website bán nội thất</strong></p>
+            </div>
+            <div class="col-3 mb-4">
+              <h6 class="text-uppercase fw-bold mb-4">Danh sách thành viên</h6>
+              <p>Nguyễn Trần Ngọc Linh - Trưởng nhóm</p>
+              <p>Bùi Đức Lương</p>
+              <p>Lê Thành Long</p>
+            </div>
+            <div class="col-2 mb-4">
+              <h6 class="text-uppercase fw-bold mb-4">Ngày sinh</h6>
+              <p>31/01/2002</p>
+              <p>21/06/2002</p>
+              <p>14/11/2002</p>
+            </div>
+            <div class="col-4 mb-4">
+              <h6 class="text-uppercase fw-bold mb-4">Nhiệm vụ</h6>
+              <p>
+                Đảm nhiệm vị trí <strong>Frontend</strong> và <strong>Backend</strong> ở phía người
+                dùng
+              </p>
+              <p>Đảm nhiệm vị trí <strong>Frontend</strong> ở phía Admin và viết báo cáo</p>
+              <p>
+                Đảm nhiệm vị trí <strong>Backend</strong> ở phía Admin và thiết kế cơ sở dữ liệu
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+          © 2023 Copyright:
+          <strong>Linh Tran</strong>
+        </div>
+      </footer>
+    </div>
+    <script src="./lib/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

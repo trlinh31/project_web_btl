@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root {
+  --bg-color: #eff2f1;
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #21313c;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  background-color: var(--bg-color);
+  scroll-behavior: smooth;
+}
+button,
+input,
+textarea {
+  font-family: 'Inter', sans-serif;
+}
+textarea {
+  resize: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+a:hover {
+  color: inherit;
+}
+.navbar-brand {
+  color: var(--black-color);
+  font-size: 32px;
+  font-weight: 600;
+}
+.navbar-brand span {
+  opacity: 0.4;
+}
+.list-inline-item {
+  color: var(--black-color);
+  font-size: 26px;
+}
+.list-inline-item span {
+  font-size: 14px;
+}
+.nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.175);
+}
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  height: max-content;
+  backdrop-filter: blur(20px);
+  padding: 8px 20px;
+  z-index: 1;
+}
+.messenger__icon {
+  padding: 10px;
+  font-size: 40px;
+  border-radius: 50%;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+}
+.messenger__icon a {
+  color: var(--white-color);
+}
+.hero__wrapper {
+  position: relative;
+  background-image: url('../images/banner_large_4.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  background-attachment: fixed;
+}
+.hero__wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.175);
+}
+.hero__block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+.hero__block span i {
+  font-size: 50px;
+  color: var(--white);
+}
+.hero-block__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 275px;
+  height: 275px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.hero-block__item i {
+  font-size: 60px;
+  color: var(--primary);
+  padding-bottom: 20px;
+}
+.hero-block__item p {
+  font-size: 18px;
+  font-weight: 500;
+}
