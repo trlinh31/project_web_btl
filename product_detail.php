@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,10 +50,10 @@
             <?= $product["description"] ?>
           </p>
           <div class="d-flex column-gap-3">
-            <button class="btn btn-primary" data-id="<?= $product["id"] ?> <?= $product["quantity"] == 0 ? "disabled" : "" ?>">
+            <button class="btn btn-primary" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?>>
               Mua ngay
             </button>
-            <button class="add-to-cart btn btn-outline-primary" data-id="<?= $product["id"] ?> <?= $product["quantity"] == 0 ? "disabled" : "" ?>" title="Thêm vào giỏ hàng">
+            <button class="add-to-cart btn btn-outline-primary" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?> title="Thêm vào giỏ hàng">
               Thêm vào giỏ
             </button>
           </div>
@@ -67,7 +68,8 @@
               <span class="customer-name__message text-danger"></span>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" name="customer_phone" placeholder="Số điện thoại" />
+              <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Số điện thoại" />
+              <span class="customer-phone__message text-danger"></span>
             </div>
           </div>
           <div class="row w-50 mb-3">

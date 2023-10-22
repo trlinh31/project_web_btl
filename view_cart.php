@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,6 @@
 <body>
   <div id="root">
     <?php
-    session_start();
     include_once("./includes/header.php");
     include_once("./includes/messenger.php");
     $total = 0;
@@ -24,7 +24,7 @@
         <div class="col-md-8">
           <hr />
           <?php
-          if (!empty($_SESSION["cart"])) {
+          if (isset($_SESSION["cart"])) {
             foreach ($_SESSION["cart"] as $item) :
               $total += $item["price"] * $item["quantity"];
           ?>
@@ -42,7 +42,7 @@
                   <form action="./php/update_cart.php" method="get">
                     <input type="hidden" name="action" value="update_qty">
                     <input type="hidden" name="id" value="<?= $item["id"] ?>">
-                    <input type="number" class="form-control" min=0 value="<?= $item["quantity"] ?>" name="quantity" style="width: 70px" onchange="this.form.submit()" />
+                    <input type="number" class="form-control" value="<?= $item["quantity"] ?>" name="quantity" style="width: 70px" onchange="this.form.submit()" />
                   </form>
                 </div>
                 <div class="col-3">

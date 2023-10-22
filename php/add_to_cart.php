@@ -12,6 +12,6 @@ if (!isset($_SESSION["cart"][$id])) {
   $_SESSION["cart"][$id]["image"] = $product_detail["image"];
   echo "Đã thêm sản phẩm vào giỏ hàng thành công !";
 } else {
-  $_SESSION["cart"][$id]["quantity"] = $product_detail["quantity"] + 1;
+  $_SESSION["cart"][$id]["quantity"] += 1;
   echo "Sản phẩm đã có trong giỏ hàng !";
 }

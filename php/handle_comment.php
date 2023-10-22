@@ -1,6 +1,5 @@
 <?php
 require_once(__DIR__ . "/../classes/product.php");
-session_start();
 if (isset($_POST["request"]) && $_POST["request"] == "post_comment") {
   $customer_name = $_POST["customer_name"];
   $customer_phone = $_POST["customer_name"];

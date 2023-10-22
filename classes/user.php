@@ -1,6 +1,5 @@
 <?php
 require_once(__DIR__ . "/../config/database.php");
-session_start();
 class User
 {
   private $database = null;
@@ -11,9 +10,6 @@ class User
   public function handleSubmitContact($data)
   {
     $result = $this->database->insert("contacts", $data, "sssss");
-    if ($result) {
-      $_SESSION["msg"] = "Shop đã nhận được yêu cầu hỗ trợ từ bạn! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất";
-    }
   }
   public function checkUserExist($username, $email)
   {

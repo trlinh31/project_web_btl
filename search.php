@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +32,10 @@
               <div class="col-lg-3">
                 <div class="card overflow-hidden">
                   <div class="card-body position-relative">
-                    <img src="./assets/images/<?= $item["image"] ?>" class="card-img-top" loading="lazy" alt="..." />
+                    <img src="./assets/images/<?= $item["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
                     <h5 class="card-title">
                       <a href="product_detail.php?id=<?= $item["id"] ?>" class="text-decoration-none text-muted">
-                        <div class="pro__name">
+                        <div class="line__clamp">
                           <small><?= $item["name"] ?></small>
                         </div>
                       </a>
@@ -50,9 +51,9 @@
                         <?= number_format($item["price"], 0, '', '.') ?>
                       </small>
                     </h6>
-                    <a href="#" class="btn btn-primary" title="Thêm vào giỏ hàng">
+                    <button class="add-to-cart btn btn-primary" data-id="<?= $item["id"] ?>" title="Thêm vào giỏ hàng">
                       <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

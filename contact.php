@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,31 +25,36 @@
         <div class="col-lg-6">
           <h1 class="text-uppercase pt-3">Liên hệ</h1>
           <p>Nếu bạn có bất kì thắc mắc nào hãy gửi cho chúng tôi.</p>
-          <form action="./php/handle_contact.php" method="post">
+          <form action="./php/handle_contact.php" method="post" onsubmit="return validateFormContact()">
             <div class="row mb-3">
               <div class="col-6">
                 <label for="full_name" class="form-label">Họ và tên:</label>
-                <input type="text" class="form-control" name="full_name" required />
+                <input type="text" class="form-control" id="full_name" name="full_name" />
+                <span class="full-name__message text-danger"></span>
               </div>
               <div class="col-6">
                 <label for="phone" class="form-label">Số điện thoại:</label>
-                <input type="text" class="form-control" name="phone" required />
+                <input type="text" class="form-control" id="phone" name="phone" />
+                <span class="phone__message text-danger"></span>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-6">
                 <label for="subject" class="form-label">Chủ đề:</label>
-                <input type="text" class="form-control" name="subject" required />
+                <input type="text" class="form-control" id="subject" name="subject" />
+                <span class="subject__message text-danger"></span>
               </div>
               <div class="col-6">
                 <label for="email" class="form-label">Email:</label>
-                <input type="text" class="form-control" name="email" required />
+                <input type="text" class="form-control" id="email" name="email" />
+                <span class="email__message text-danger"></span>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-12">
                 <label for="content" class="form-label">Vấn đề mà bạn gặp phải:</label>
                 <textarea id="content" class="form-control" name="content" rows="3"></textarea>
+                <span class="content__message text-danger"></span>
               </div>
             </div>
             <div class="d-flex column-gap-3">
@@ -63,6 +69,7 @@
     <?php include_once("./includes/footer.php"); ?>
   </div>
   <script src="./lib/boostrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./lib/jquery/jquery-3.7.1.min.js"></script>
   <script src="./assets/js/main.js"></script>
 </body>
 

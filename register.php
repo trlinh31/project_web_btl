@@ -13,7 +13,7 @@
 <body>
   <div id="root">
     <section class="my-5">
-      <div class="mx-auto bg-white p-4 shadow" style="width: 500px; height: 720px;">
+      <div class="mx-auto bg-white p-4 shadow" style="width: 500px; height: max-content;">
         <h1>Đăng Ký</h1>
         <hr />
         <form action="./php/handle_register.php" method="post" onsubmit="return validateFormRegister()">

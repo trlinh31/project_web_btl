@@ -19,7 +19,6 @@
       <div class="col-lg-3 text-end d-none d-lg-block">
         <div class="list-inline mt-3">
           <?php
-          session_start();
           if (isset($_SESSION["user"])) {
           ?>
             <a href="./php/handle_logout.php" class="list-inline-item fs-6" title="Đăng xuất"><?= $_SESSION["user"]["name"] ?></a>
