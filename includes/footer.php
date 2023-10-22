@@ -2,7 +2,7 @@
   <div class="container text-center text-md-start pt-3">
     <div class="row mt-3">
       <div class="col-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-4">Nhóm 4</h6>
+        <h6 class="text-uppercase fw-bold mb-4">Nhóm 2</h6>
         <p>Đề tài: <strong>Xây dựng Website bán nội thất</strong></p>
       </div>
       <div class="col-4 mb-4">

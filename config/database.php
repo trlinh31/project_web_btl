@@ -31,6 +31,18 @@ class Database
     }
     return $data;
   }
+  public function getAllWithLimit($sql, $offset, $limit)
+  {
+    $data = array();
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ii", $offset, $limit);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $data[] = $row;
+    }
+    return $data;
+  }
   public function getRecord($sql, $id)
   {
     $stmt = $this->conn->prepare($sql);
@@ -39,7 +51,7 @@ class Database
     $result = $stmt->get_result();
     return $result->fetch_assoc();
   }
-  public function getAllWithId($sql, $id)
+  public function getAllById($sql, $id)
   {
     $data = array();
     $stmt = $this->conn->prepare($sql);
@@ -51,6 +63,14 @@ class Database
     }
     return $data;
   }
+  public function getRecordByUsername($sql, $username)
+  {
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+  }
   public function insert($table, $data = [], $types)
   {
     $table_col_values = implode(',', array_keys($data));
@@ -59,6 +79,32 @@ class Database
     $sql = "INSERT INTO $table($table_col_values) VALUES ($question_mark)";
     $stmt = $this->conn->prepare($sql);
     $stmt->bind_param($types, ...$values);
+    return $stmt->execute();
+  }
+  public function search($keywords)
+  {
+    $data = array();
+    $sql = "SELECT * FROM products WHERE name LIKE '%$keywords%'";
+    $stmt = $this->conn->prepare($sql);
     $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $data[] = $row;
+    }
+    if ($result->num_rows > 0) {
+      return $data;
+    }
+    return null;
+  }
+  public function check($sql, $condition_1, $condition_2)
+  {
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ss", $condition_1, $condition_2);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+      return true;
+    }
+    return false;
   }
 }

@@ -10,21 +10,21 @@
         <img src="./assets/images/banner_large_1.jpg" class="d-block w-100 object-fit-cover" alt="..." />
         <div class="carousel-caption rounded-4">
           <h5 class="fs-1 fw-bold text-uppercase">Đồ nội thất cao cấp</h5>
-          <p class="m-0 text-light-subtle">Mẫu mã đa dạng, chất liệu cao cấp</p>
+          <p class="m-0" style="opacity: 0.7;">Mẫu mã đa dạng, chất liệu cao cấp</p>
         </div>
       </div>
       <div class="carousel-item h-100">
         <img src="./assets/images/banner_large_2.jpg" class="d-block w-100 object-fit-cover" alt="..." />
         <div class="carousel-caption rounded-4">
           <h5 class="fs-1 fw-bold text-uppercase">Màu sắc đa dạng</h5>
-          <p class="m-0 text-light-subtle">Màu sắc trẻ trung, hiện đại</p>
+          <p class="m-0" style="opacity: 0.7;">Màu sắc trẻ trung, hiện đại</p>
         </div>
       </div>
       <div class="carousel-item h-100">
         <img src="./assets/images/banner_large_3.jpg" class="d-block w-100 object-fit-cover" alt="..." />
         <div class="carousel-caption rounded-4">
           <h5 class="fs-1 fw-bold text-uppercase">Ngại phí vận chuyển</h5>
-          <p class="m-0 text-light-subtle">Giao hàng toàn quốc, miễn phí vận chuyển</p>
+          <p class="m-0" style="opacity: 0.7;">Giao hàng toàn quốc, miễn phí vận chuyển</p>
         </div>
       </div>
     </div>
