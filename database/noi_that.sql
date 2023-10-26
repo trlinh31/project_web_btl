@@ -3,12 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 22, 2023 lúc 07:31 AM
+-- Thời gian đã tạo: Th10 26, 2023 lúc 05:33 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 7.4.33
-
-CREATE DATABASE IF NOT EXISTS noi_that;
-USE noi_that;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -23,13 +20,16 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `noi_that`
 --
+CREATE DATABASE IF NOT EXISTS `noi_that` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `noi_that`;
 
 -- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `categories`
 --
-CREATE TABLE IF NOT EXISTS `categories` (
+
+CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -49,12 +49,12 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- Cấu trúc bảng cho bảng `contacts`
 --
 
-CREATE TABLE IF NOT EXISTS `contacts` (
+CREATE TABLE `contacts` (
   `id` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `subject` varchar(100) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 -- Đang đổ dữ liệu cho bảng `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `full_name`, `phone`, `email`, `subject`, `content`) VALUES
-(1, 'Linh Trần', '0979349098', 'nguyentranlinh31@gma', 'Hỗ trợ về cửa hàng', 'Cho mình xin địa chỉ của shop'),
-(2, 'Nguyen Van N', '0979349098', 'nguyentranlinh31@gma', 'Hỗ trợ về cửa hàng', 'aaaaa'),
-(3, 'Nguyen Van D', '0979349098', 'abc@gmail.com', 'Hỗ trợ về cửa hàng', 'xxx');
+INSERT INTO `contacts` (`id`, `full_name`, `phone`, `email`, `title`, `content`) VALUES
+(3, 'Nguyen Van D', '0979349098', 'abc@gmail.com', 'Hỗ trợ về cửa hàng', 'xxx'),
+(7, 'Linh Trần', '0979349098', 'loli@gmail.com', 'Hỗ trợ về cửa hàng', '123'),
+(8, 'Linh Trần', '0979349098', 'trlinh31.clone@gmail.com', 'test123', 'test123');
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ INSERT INTO `contacts` (`id`, `full_name`, `phone`, `email`, `subject`, `content
 -- Cấu trúc bảng cho bảng `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -108,7 +108,17 @@ INSERT INTO `products` (`id`, `name`, `quantity`, `price`, `discount`, `image`, 
 (17, 'Ghế ăn xoay Albert Kuip Taupe', 7, 13650000, 0, 'pro_17.png', 2, 'Ghế ăn Albert Kuip Taupe là tâm điểm nội thất đáng chú ý bởi nó bao phủ xung quanh bằng lớp vải mang sắc xanh dương rực rỡ, nổi bật. Chân ghế sử dụng sắt sơn tĩnh điện màu đen thời thượng được xem là sự kết hợp hoàn hảo, một thiết kế nắm bắt xu hướng hiện nay.'),
 (18, 'Ghế Gerda đen trắng', 0, 5333000, 0, 'pro_18.png', 2, 'Ghế ăn Gerda là tâm điểm nội thất đáng chú ý bởi nó bao phủ xung quanh bằng lớp vải mang sắc xanh dương rực rỡ, nổi bật. Chân ghế sử dụng sắt sơn tĩnh điện màu đen thời thượng được xem là sự kết hợp hoàn hảo, một thiết kế nắm bắt xu hướng hiện nay.'),
 (19, 'Ghế ăn không tay Elegance màu tự nhiên', 1, 16400000, 12, 'pro_19.png', 2, 'Ghế Elegance được làm từ gỗ Tần bì Mỹ. Bề mặt ngồi được thiết kế tỉ mỉ với sự đan xen của những sợi dây thừng cao cấp nhập khẩu từ Đức. Với đặc điểm chống nước tốt cùng khả năng đàn hồi cao, sản phẩm hứa hẹn sẽ đem lại trải nghiệm thú vị cho người dùng. Phần lưng tựa uốn cong nhẹ nhàng cho người dùng một tư thế ngồi thoải mái. Ghế Elegance với thiết kế tối giản sẽ mang đến không gian ấm cúng và trang nhã.'),
-(20, 'Ghế ăn không tay Elegance màu đen', 5, 16400000, 10, 'pro_20.png', 2, 'Ghế Elegance được làm từ gỗ Tần bì Mỹ. Bề mặt ngồi được thiết kế tỉ mỉ với sự đan xen của những sợi dây thừng cao cấp nhập khẩu từ Đức. Với đặc điểm chống nước tốt cùng khả năng đàn hồi cao, sản phẩm hứa hẹn sẽ đem lại trải nghiệm thú vị cho người dùng. Phần lưng tựa uốn cong nhẹ nhàng cho người dùng một tư thế ngồi thoải mái. Ghế Elegance với thiết kế tối giản sẽ mang đến không gian ấm cúng và trang nhã.');
+(20, 'Ghế ăn không tay Elegance màu đen', 5, 16400000, 10, 'pro_20.png', 2, 'Ghế Elegance được làm từ gỗ Tần bì Mỹ. Bề mặt ngồi được thiết kế tỉ mỉ với sự đan xen của những sợi dây thừng cao cấp nhập khẩu từ Đức. Với đặc điểm chống nước tốt cùng khả năng đàn hồi cao, sản phẩm hứa hẹn sẽ đem lại trải nghiệm thú vị cho người dùng. Phần lưng tựa uốn cong nhẹ nhàng cho người dùng một tư thế ngồi thoải mái. Ghế Elegance với thiết kế tối giản sẽ mang đến không gian ấm cúng và trang nhã.'),
+(21, 'Giường Coastal KD1058-18 1m6', 5, 28900000, 0, 'pro_21.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(22, 'Giường Coastal KD1058-18 1m8', 4, 31900000, 0, 'pro_22.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(23, 'Giường Coastal vàng 1m6', 10, 28900000, 0, 'pro_23.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(24, 'Giường Coastal vàng 1m8', 7, 31900000, 0, 'pro_24.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(25, 'Giường Coastal xanh 1m6', 0, 28900000, 0, 'pro_25.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(26, 'Giường Coastal xanh 1m8', 1, 31900000, 0, 'pro_26.png', 3, 'Giường ngủ Coastal mang đến cảm giác như đang nằm trên bãi biển dài bình yên, với đường cong êm ái ở đầu giường, các cạnh cùng phần vạt hở duyên dáng hình chữ V, gợi nhớ đến hình ảnh chim hải âu bay trên biển. BST Coastal ban đầu được thiết kế cho căn hộ nghỉ dưỡng ở vùng duyên hải. Nhưng với sự sáng tạo và phá cách, Coastal trở nên năng động và phù hợp với nhiều không gian sống, mang thiên nhiên vào mọi không gian.'),
+(27, 'Giường Hộc Kéo Iris 1M6 Vải Belfast 41', 5, 14630000, 10, 'pro_27.png', 3, 'Giường Hộc Kéo Iris 1M6 Vải Belfast 41 với tông màu xám trang nhã giúp không gian phòng ngủ thêm phần sang trọng và hiện đại. Khung gỗ MFC mang lại cảm giác chắc chắn cùng lớp vải bọc êm ái, cho người dùng trải nghiệm thư thái nhất. Với thiết kế 4 hộc kéo xung quanh giường, vừa tiết kiệm diện tích, lại vừa tiện dụng trong việc cất giữ đồ đạc. Nhờ vậy, không gian sống sẽ thông thoáng và gọn gàng hơn với thiết kế thông minh này.'),
+(28, 'Giường Hộc Kéo Iris 1M8 Vải Belfast 41', 4, 15620000, 0, 'pro_28.png', 3, 'Giường Hộc Kéo Iris 1M6 Vải Belfast 41 với tông màu xám trang nhã giúp không gian phòng ngủ thêm phần sang trọng và hiện đại. Khung gỗ MFC mang lại cảm giác chắc chắn cùng lớp vải bọc êm ái, cho người dùng trải nghiệm thư thái nhất. Với thiết kế 4 hộc kéo xung quanh giường, vừa tiết kiệm diện tích, lại vừa tiện dụng trong việc cất giữ đồ đạc. Nhờ vậy, không gian sống sẽ thông thoáng và gọn gàng hơn với thiết kế thông minh này.'),
+(29, 'Giường Leman 1m8 vải VACT4328', 2, 33650000, 0, 'pro_29.png', 3, 'Giường Leman với tông màu xám trang nhã giúp không gian phòng ngủ thêm phần sang trọng và hiện đại. Khung gỗ MFC mang lại cảm giác chắc chắn cùng lớp vải bọc êm ái, cho người dùng trải nghiệm thư thái nhất. Với thiết kế 4 hộc kéo xung quanh giường, vừa tiết kiệm diện tích, lại vừa tiện dụng trong việc cất giữ đồ đạc. Nhờ vậy, không gian sống sẽ thông thoáng và gọn gàng hơn với thiết kế thông minh này.'),
+(30, 'Giường Leman 1m8 vải VACT7464', 8, 33650000, 0, 'pro_30.png', 3, 'Giường Leman với tông màu xám trang nhã giúp không gian phòng ngủ thêm phần sang trọng và hiện đại. Khung gỗ MFC mang lại cảm giác chắc chắn cùng lớp vải bọc êm ái, cho người dùng trải nghiệm thư thái nhất. Với thiết kế 4 hộc kéo xung quanh giường, vừa tiết kiệm diện tích, lại vừa tiện dụng trong việc cất giữ đồ đạc. Nhờ vậy, không gian sống sẽ thông thoáng và gọn gàng hơn với thiết kế thông minh này.');
 
 -- --------------------------------------------------------
 
@@ -116,7 +126,7 @@ INSERT INTO `products` (`id`, `name`, `quantity`, `price`, `discount`, `image`, 
 -- Cấu trúc bảng cho bảng `product_comments`
 --
 
-CREATE TABLE IF NOT EXISTS `product_comments` (
+CREATE TABLE `product_comments` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `customer_name` varchar(100) NOT NULL,
@@ -140,7 +150,16 @@ INSERT INTO `product_comments` (`id`, `product_id`, `customer_name`, `customer_p
 (9, 11, 'Linh Trần', 'Linh Trần', 'đâsdasdas'),
 (10, 1, 'Linh Trần', 'Linh Trần', 'abc'),
 (11, 1, 'Linh Trần', 'Linh Trần', 'xyz'),
-(12, 2, 'Linh Trần', 'Linh Trần', 'ádasdasd');
+(12, 2, 'Linh Trần', 'Linh Trần', 'ádasdasd'),
+(13, 20, 'Linh Trần', 'Linh Trần', 'ads'),
+(14, 20, 'Linh Trần', 'Linh Trần', 'đc'),
+(15, 20, 'Linh Trần', 'Linh Trần', 'a'),
+(16, 20, 'Linh Trần', 'Linh Trần', 'ok'),
+(17, 20, 'Linh Trần', 'Linh Trần', 'asd'),
+(18, 20, 'Linh Trần', 'Linh Trần', 'asdasd'),
+(19, 2, 'ád', 'ád', 'ád'),
+(20, 19, 'Linh Trần', 'Linh Trần', 'tuyệt'),
+(21, 19, 'Linh Trần', 'Linh Trần', 'ád');
 
 -- --------------------------------------------------------
 
@@ -148,7 +167,7 @@ INSERT INTO `product_comments` (`id`, `product_id`, `customer_name`, `customer_p
 -- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -163,7 +182,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `username`, `password`, `email`, `phone`, `address`) VALUES
-(6, 'Linh Trần', 'trlinh31', '12345', 'trlinh31.clone@gmail.com', '0979349098', 'Hà Nội');
+(6, 'Linh Trần', 'trlinh31', '12345', 'trlinh31.clone@gmail.com', '0979349098', 'Hà Nội'),
+(8, 'sadsad', 'asdasd', '12345', 'asd@gmail.com', '0979349098', 'asdasd'),
+(9, 'Nguyen Van E', 'lolicon', '123', 'loli@gmail.com', '0979349098', 'Hà Nội');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -216,25 +237,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `product_comments`
 --
 ALTER TABLE `product_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
