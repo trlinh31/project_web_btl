@@ -15,52 +15,35 @@
   <div id="root">
     <?php
     include_once("./includes/header.php");
+    include_once("./includes/notification.php");
     include_once("./includes/messenger.php");
     ?>
-    <section class="container bg-white shadow rounded-4 p-0 overflow-hidden pe-4">
+    <section class="container bg-white shadow-lg p-0 overflow-hidden pe-4">
       <div class="row">
         <div class="col-lg-6">
           <img src="./assets/images/banner_large_5.jpg" class="object-fit-cover" width="100%" height="600" alt="" />
         </div>
         <div class="col-lg-6">
-          <h1 class="text-uppercase pt-3">Liên hệ</h1>
-          <p>Nếu bạn có bất kì thắc mắc nào hãy gửi cho chúng tôi.</p>
+          <div class="mb-5">
+            <h1 class="text-primary text-uppercase pt-3">Liên hệ</h1>
+            <small>Nếu bạn có bất kì thắc mắc nào hãy gửi cho chúng tôi.</small>
+          </div>
           <form action="./php/handle_contact.php" method="post" onsubmit="return validateFormContact()">
             <div class="row mb-3">
-              <div class="col-6">
-                <label for="full_name" class="form-label">Họ và tên:</label>
-                <input type="text" class="form-control" id="full_name" name="full_name" />
-                <span class="full-name__message text-danger"></span>
-              </div>
-              <div class="col-6">
-                <label for="phone" class="form-label">Số điện thoại:</label>
-                <input type="text" class="form-control" id="phone" name="phone" />
-                <span class="phone__message text-danger"></span>
+              <div class="form-group col-12">
+                <label for="title" class="form-label">Tiêu đề:</label>
+                <input type="text" class="form-control" id="title" name="title" />
               </div>
             </div>
-            <div class="row mb-3">
-              <div class="col-6">
-                <label for="subject" class="form-label">Chủ đề:</label>
-                <input type="text" class="form-control" id="subject" name="subject" />
-                <span class="subject__message text-danger"></span>
-              </div>
-              <div class="col-6">
-                <label for="email" class="form-label">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" />
-                <span class="email__message text-danger"></span>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
+            <div class="row mb-5">
+              <div class="form-group col-12">
                 <label for="content" class="form-label">Vấn đề mà bạn gặp phải:</label>
-                <textarea id="content" class="form-control" name="content" rows="3"></textarea>
-                <span class="content__message text-danger"></span>
+                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
               </div>
             </div>
             <div class="d-flex column-gap-3">
-              <input type="hidden" name="request" value="post_contact">
-              <button type="submit" class="btn btn-primary px-5">Gửi</button>
-              <button type="reset" class="btn btn-outline-primary">Nhập lại</button>
+              <button type="submit" class="btn btn-primary px-5 rounded-0">Gửi</button>
+              <button type="reset" class="btn btn-outline-primary rounded-0">Nhập lại</button>
             </div>
           </form>
         </div>
@@ -71,6 +54,7 @@
   <script src="./lib/boostrap/js/bootstrap.bundle.min.js"></script>
   <script src="./lib/jquery/jquery-3.7.1.min.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/validator.js"></script>
 </body>
 
 </html>

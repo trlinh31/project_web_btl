@@ -2,13 +2,13 @@
   <div class="container pb-3">
     <div class="row w-100 align-items-center gx-0">
       <div class="col-lg-3">
-        <a href="index.php" class="navbar-brand">Interior<span>.</span></a>
+        <a href="index.php" class="navbar-brand fw-bold text-primary">Interior<span class="text-black">.</span></a>
       </div>
       <div class="col-lg-6 d-none d-lg-block">
         <form action="search.php" method="get">
           <div class="input-group">
-            <input type="search" class="form-control border-0" name="search" placeholder="Nhập tên sản phẩm cần tìm..." autocomplete="off" required />
-            <div class="input-group-text bg-primary">
+            <input type="search" class="form-control" name="search" placeholder="Nhập tên sản phẩm cần tìm..." autocomplete="off" />
+            <div class="input-group-text bg-primary rounded-0">
               <button type="submit" class="btn btn-primary bg-primary border-0">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
@@ -21,7 +21,10 @@
           <?php
           if (isset($_SESSION["user"])) {
           ?>
-            <a href="./php/handle_logout.php" class="list-inline-item fs-6" title="Đăng xuất"><?= $_SESSION["user"]["name"] ?></a>
+            <a href="./php/handle_logout.php" class="list-inline-item fs-6 text-decoration-none" title="Đăng xuất">
+              <?= $_SESSION["user"]["full_name"] ?>
+              <i class="fa-solid fa-right-from-bracket ps-1"></i>
+            </a>
           <?php } else { ?>
             <a href="#" class="list-inline-item" data-bs-toggle="modal" data-bs-target="#userModal">
               <i class="fa-solid fa-user"></i>
@@ -48,9 +51,9 @@
             </a>
             <ul class="dropdown-menu shadow">
               <?php
-              require_once("./classes/product.php");
-              $productController = new Product();
-              $categories = $productController->getAllCategories();
+              require_once("./classes/database.php");
+              $db = new Database();
+              $categories = $db->getAllCategories();
               foreach ($categories as $item) :
               ?>
                 <li><a class="dropdown-item" href="category.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a></li>
@@ -69,20 +72,18 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Đăng Nhập</h1>
+          <h1 class="modal-title text-primary">Đăng Nhập</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="./php/handle_login.php" onsubmit="return validateFormLogin();" method="post">
-            <div class="mb-3">
+            <div class="form-group mb-3">
               <label for="username" class="form-label">Tên đăng nhập:</label>
-              <input type="text" name="username" id="username" class="form-control rounded" />
-              <span class="username__message text-danger"></span>
+              <input type="text" name="username" id="username" class="form-control" />
             </div>
-            <div class="mb-3">
+            <div class="form-group mb-3">
               <label for="password" class="form-label">Mật khẩu:</label>
-              <input type="password" name="password" id="password" class="form-control rounded" />
-              <span class="password__message text-danger"></span>
+              <input type="password" name="password" id="password" class="form-control" />
             </div>
             <div class="d-flex align-items-center justify-content-between">
               <div class="form-check">
@@ -91,7 +92,7 @@
                   Hiển thị mật khẩu
                 </label>
               </div>
-              <button type="submit" class="btn btn-primary">Đăng nhập</button>
+              <button type="submit" class="btn btn-primary rounded-0">Đăng nhập</button>
             </div>
           </form>
         </div>

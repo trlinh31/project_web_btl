@@ -16,26 +16,27 @@
   <div id="root">
     <?php
     include_once("./includes/header.php");
-    include_once("./includes/slider.php");
+    include_once("./includes/notification.php");
+    include_once("./includes/banner.php");
     include_once("./includes/messenger.php");
     ?>
     <section class="mb-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 position-relative">
-            <img src="./assets/images/sofa_banner.jpg" class="object-fit-cover h-100 rounded-5 shadow" width="100%" loading="lazy" alt="" />
+          <div class="col-4 position-relative">
+            <img src="./assets/images/sofa_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
             <div class="position-absolute top-50 start-50 translate-middle">
               <h1 class="text-white">SOFA</h1>
             </div>
           </div>
-          <div class="col-md-4 position-relative">
-            <img src="./assets/images/ghe_an_banner.jpg" class="object-fit-cover h-100 rounded-5 shadow" width="100%" loading="lazy" alt="" />
+          <div class="col-4 position-relative">
+            <img src="./assets/images/ghe_an_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
             <div class="carousel-caption rounded-4 position-absolute top-50 start-50 translate-middle">
               <h1 class="text-white">Ghế Ăn</h1>
             </div>
           </div>
-          <div class="col-md-4 position-relative">
-            <img src="./assets/images/giuong_banner.jpg" class="object-fit-cover h-100 rounded-5 shadow" width="100%" loading="lazy" alt="" />
+          <div class="col-4 position-relative">
+            <img src="./assets/images/giuong_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
             <div class="carousel-caption rounded-4 position-absolute top-50 start-50 translate-middle">
               <h1 class="text-white">Giường</h1>
             </div>
@@ -45,39 +46,41 @@
     </section>
     <section class="mb-5">
       <div class="container">
-        <h1 class="fw-bold text-uppercase pb-2">Sản phẩm mới</h1>
+        <h1 class="fw-bold text-uppercase pb-3">Sản phẩm mới</h1>
         <div class="row row-gap-4">
           <?php
-          require_once("./classes/product.php");
-          $productController = new Product();
-          $products = $productController->getProductNew();
-          foreach ($products as $item) :
+          require_once("./classes/database.php");
+          $db = new Database();
+          $products = $db->getNewProducts();
+          foreach ($products as $p) :
           ?>
             <div class="col-lg-3">
-              <div class="card overflow-hidden">
+              <div class="card shadow overflow-hidden">
                 <div class="card-body position-relative">
-                  <img src="./assets/images/<?= $item["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
-                  <h5 class="card-title">
-                    <a href="product_detail.php?id=<?= $item["id"] ?>" class="text-decoration-none text-muted">
-                      <div class="line__clamp">
-                        <small><?= $item["name"] ?></small>
+                  <div class="position-absolute top-0 start-0 <?= $p["discount"] == 0 ? 'd-none' : '' ?>">
+                    <span class="badge rounded bg-danger ms-2 mt-2">-<?= $p["discount"] ?>%</span>
+                  </div>
+                  <img src="./assets/images/<?= $p["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
+                  <p class="card-title">
+                    <a href="product_detail.php?id=<?= $p["id"] ?>" class="fw-bold text-decoration-none text-muted">
+                      <div class="line__clamp text-center">
+                        <small><?= $p["name"] ?></small>
                       </div>
                     </a>
-                  </h5>
-                  <div class="position-absolute top-0 start-0 <?= $item["discount"] == 0 ? 'd-none' : '' ?>">
-                    <span class="badge rounded bg-danger ms-2 mt-2">-<?= $item["discount"] ?>%</span>
+                  </p>
+                  <div class="text-center pt-2">
+                    <h6 style="height: 40px;">
+                      <span class="text-danger"><?= number_format($p["price"] - ($p["price"] * $p["discount"] / 100), 0, '', '.') ?>đ</span>
+                      <p class="fw-light text-decoration-line-through <?= $p["discount"] == 0 ? 'd-none' : '' ?>" style="font-size: 12px;opacity: 0.6">
+                        <?= number_format($p["price"], 0, '', '.') ?>
+                      </p>
+                    </h6>
                   </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                  <h6 class="m-0">
-                    <?= number_format($item["price"] - ($item["price"] * $item["discount"] / 100), 0, '', '.') ?>đ
-                    <small class="fw-light text-decoration-line-through <?= $item["discount"] == 0 ? 'd-none' : '' ?>" style="font-size: 12px;opacity: 0.6">
-                      <?= number_format($item["price"], 0, '', '.') ?>
-                    </small>
-                  </h6>
-                  <button class="add-to-cart btn btn-primary" data-id="<?= $item["id"] ?>" title="Thêm vào giỏ hàng">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </button>
+                  <div class="d-grid">
+                    <button class="add-to-cart btn btn-primary" data-id="<?= $p["id"] ?>" title="Thêm vào giỏ hàng">
+                      Thêm vào giỏ
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,39 +90,39 @@
     </section>
     <section class="mb-5">
       <div class="container">
-        <h1 class="fw-bold text-uppercase pb-2">Sản phẩm giảm giá</h1>
+        <h1 class="fw-bold text-uppercase pb-3">Sản phẩm giảm giá</h1>
         <div class="row row-gap-4">
           <?php
-          require_once("./classes/product.php");
-          $productController = new Product();
-          $products = $productController->getDiscountedProducts();
-          foreach ($products as $item) :
+          $products = $db->getDiscountedProduct();
+          foreach ($products as $p) :
           ?>
             <div class="col-lg-3">
-              <div class="card overflow-hidden">
+              <div class="card shadow overflow-hidden">
                 <div class="card-body position-relative">
-                  <img src="./assets/images/<?= $item["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
-                  <h5 class="card-title">
-                    <a href="product_detail.php?id=<?= $item["id"] ?>" class="text-decoration-none text-muted">
-                      <div class="line__clamp">
-                        <small><?= $item["name"] ?></small>
+                  <div class="position-absolute top-0 start-0 <?= $p["discount"] == 0 ? 'd-none' : '' ?>">
+                    <span class="badge rounded bg-danger ms-2 mt-2">-<?= $p["discount"] ?>%</span>
+                  </div>
+                  <img src="./assets/images/<?= $p["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
+                  <p class="card-title">
+                    <a href="product_detail.php?id=<?= $p["id"] ?>" class="fw-bold text-decoration-none text-muted">
+                      <div class="line__clamp text-center">
+                        <small><?= $p["name"] ?></small>
                       </div>
                     </a>
-                  </h5>
-                  <div class="position-absolute top-0 start-0 <?= $item["discount"] == 0 ? 'd-none' : '' ?>">
-                    <span class="badge rounded bg-danger ms-2 mt-2">-<?= $item["discount"] ?>%</span>
+                  </p>
+                  <div class="text-center pt-2">
+                    <h6 style="height: 40px;">
+                      <span class="text-danger"><?= number_format($p["price"] - ($p["price"] * $p["discount"] / 100), 0, '', '.') ?>đ</span>
+                      <p class="fw-light text-decoration-line-through <?= $p["discount"] == 0 ? 'd-none' : '' ?>" style="font-size: 12px;opacity: 0.6">
+                        <?= number_format($p["price"], 0, '', '.') ?>
+                      </p>
+                    </h6>
                   </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                  <h6 class="m-0">
-                    <?= number_format($item["price"] - ($item["price"] * $item["discount"] / 100), 0, '', '.') ?>đ
-                    <small class="fw-light text-decoration-line-through <?= $item["discount"] == 0 ? 'd-none' : '' ?>" style="font-size: 12px;opacity: 0.6">
-                      <?= number_format($item["price"], 0, '', '.') ?>
-                    </small>
-                  </h6>
-                  <button class="add-to-cart btn btn-primary" data-id="<?= $item["id"] ?>" title="Thêm vào giỏ hàng">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </button>
+                  <div class="d-grid">
+                    <button class="add-to-cart btn btn-primary" data-id="<?= $p["id"] ?>" title="Thêm vào giỏ hàng">
+                      Thêm vào giỏ
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,6 +170,7 @@
   </script>
   <script src="./lib/jquery/jquery-3.7.1.min.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/validator.js"></script>
 </body>
 
 </html>

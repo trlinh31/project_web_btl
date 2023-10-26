@@ -1,7 +1,8 @@
 <?php
-require_once(__DIR__ . "/../classes/user.php");
+session_start();
+require_once(__DIR__ . "/../classes/database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $userController = new User();
+  $db = new Database();
   $full_name = $_POST["full_name"];
   $username = $_POST["username"];
   $email = $_POST["email"];
@@ -9,21 +10,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $address = $_POST["address"];
   $password = $_POST["password"];
   $confirm = $_POST["confirm"];
-  if ($password != $confirm) {
+  if ($db->checkUserExist($username, $email)) {
+    $_SESSION["notification"] = "Tên tài khoản hoặc email đã tồn tại";
     header("Location: {$_SERVER['HTTP_REFERER']}");
-    exit;
+    exit();
+  } else {
+    $db->insertUser([
+      "full_name" => $full_name,
+      "username" => $username,
+      "password" => $password,
+      "email" => $email,
+      "phone" => $phone,
+      "address" => $address
+    ]);
+    $_SESSION["user"]["full_name"] = $full_name;
+    $_SESSION["user"]["email"] = $email;
+    $_SESSION["user"]["phone"] = $phone;
+    header("Location: ../index.php");
+    exit();
   }
-  if ($userController->checkUserExist($username, $email)) {
-    header("Location: {$_SERVER['HTTP_REFERER']}");
-    exit;
-  }
-  $userController->handleSubmitRegister([
-    "full_name" => $full_name,
-    "username" => $username,
-    "password" => $password,
-    "email" => $email,
-    "phone" => $phone,
-    "address" => $address
-  ]);
-  header("Location: /web_btl/index.php");
 }

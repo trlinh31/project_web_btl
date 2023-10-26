@@ -15,11 +15,12 @@
   <div id="root">
     <?php
     include_once("./includes/header.php");
+    include_once("./includes/notification.php");
     include_once("./includes/messenger.php");
-    require_once("./classes/product.php");
+    require_once("./classes/database.php");
     $product_id = $_GET["id"];
-    $productController = new Product();
-    $product = $productController->getDetailProduct($product_id);
+    $db = new Database();
+    $product = $db->getProductDetail($product_id);
     ?>
     <section class="container">
       <nav aria-label="breadcrumb" class="my-4">
@@ -44,16 +45,17 @@
               <span class="badge bg-danger <?= $product["discount"] == 0 ? 'd-none' : '' ?>">-<?= $product["discount"] ?>%</span>
             </h5>
           </div>
-          <p>Danh mục sản phẩm: <?= $product["category_name"] ?></p>
-          <p>
-            <strong>Mô tả:</strong>
-            <?= $product["description"] ?>
-          </p>
+          <div class="mb-3">
+            <p>Danh mục sản phẩm: <?= $product["category_name"] ?></p>
+          </div>
+          <div class="mb-3">
+            <p>
+              <strong>Mô tả:</strong>
+              <?= $product["description"] ?>
+            </p>
+          </div>
           <div class="d-flex column-gap-3">
-            <button class="btn btn-primary" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?>>
-              Mua ngay
-            </button>
-            <button class="add-to-cart btn btn-outline-primary" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?> title="Thêm vào giỏ hàng">
+            <button class="add-to-cart btn btn-primary rounded-0" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?> title="Thêm vào giỏ hàng">
               Thêm vào giỏ
             </button>
           </div>
@@ -63,32 +65,29 @@
         <h1 class="text-uppercase pb-3">Bình luận</h1>
         <form action="./php/handle_comment.php" method="post" onsubmit="return validateFormComment()">
           <div class="row w-50 mb-3">
-            <div class="col-md-6">
+            <div class="form-group col-md-6">
               <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Họ và tên" />
-              <span class="customer-name__message text-danger"></span>
             </div>
-            <div class="col-md-6">
+            <div class="form-group col-md-6">
               <input type="text" class="form-control" id="customer_phone" name="customer_phone" placeholder="Số điện thoại" />
-              <span class="customer-phone__message text-danger"></span>
             </div>
           </div>
           <div class="row w-50 mb-3">
-            <div class="col-12">
+            <div class="form-group col-12">
               <textarea class="form-control" name="customer_comment" id="customer_comment" rows="3" placeholder="Mời bạn bình luận cảm xúc về sản phẩm.."></textarea>
-              <span class="customer-comment__message text-danger"></span>
             </div>
           </div>
           <input type="hidden" name="request" value="post_comment">
           <input type="hidden" name="product_id" value="<?= $product_id ?>">
-          <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+          <button type="submit" class="btn btn-primary rounded-0">Gửi đánh giá</button>
         </form>
         <hr />
         <ul>
           <?php
-          $comments = $productController->getAllComments($product_id);
+          $comments = $db->getAllComments($product_id);
           foreach ($comments as $comment) :
           ?>
-            <li>
+            <li class="mb-3">
               <h6>
                 <i class="fa-regular fa-circle-user pe-1"></i>
                 <?= $comment["customer_name"] ?>
@@ -106,6 +105,7 @@
   <script src="./lib/boostrap/js/bootstrap.bundle.min.js"></script>
   <script src="./lib/jquery/jquery-3.7.1.min.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/validator.js"></script>
 </body>
 
 </html>

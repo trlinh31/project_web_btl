@@ -1,9 +1,9 @@
 <?php
-require_once(__DIR__ . "/../classes/product.php");
 session_start();
-$product = new Product();
+require_once(__DIR__ . "/../classes/database.php");
+$db = new Database();
 $id = $_POST["id"];
-$product_detail = $product->getDetailProduct($id);
+$product_detail = $db->getProductDetail($id);
 if (!isset($_SESSION["cart"][$id])) {
   $_SESSION["cart"][$id]["id"] = $product_detail["id"];
   $_SESSION["cart"][$id]["name"] = $product_detail["name"];
