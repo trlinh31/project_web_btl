@@ -189,4 +189,34 @@ class Database
   {
     $this->insert("product_comments", $data, "isss");
   }
+  public function insertOrderDetail($data)
+  {
+    $this->insert("orders_detail", $data, "ii");
+  }
+  public function selectMaxOrderId($id)
+  {
+    $sql = "SELECT max(id) FROM orders_detail WHERE user_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc()["max(id)"];
+  }
+  public function insertOrderProduct($data)
+  {
+    $this->insert("order_product", $data, "iii");
+  }
+  public function viewOrderDetail($id)
+  {
+    $data = array();
+    $sql = "SELECT * FROM `order_product` INNER JOIN orders_detail ON orders_detail.id = order_product.order_id INNER JOIN products ON products.id = order_product.product_id WHERE orders_detail.user_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $data[] = $row;
+    }
+    return $data;
+  }
 }

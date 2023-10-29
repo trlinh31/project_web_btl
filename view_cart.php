@@ -19,12 +19,14 @@
     include_once("./includes/messenger.php");
     $total = 0;
     ?>
-    <div class="container">
-      <h1 class="text-uppercase pb-4">Giỏ hàng</h1>
+    <div class="container mt-3" style="min-height: 360px;">
       <div class="row">
         <div class="col-8">
+          <div class="d-flex align-items-end justify-content-between mb-4">
+            <h4 class="text-uppercase">Giỏ hàng của bạn (<?= isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : "0" ?>)</h4>
+            <a href="#" class="text-uppercase text-decoration-none">Xoá giỏ hàng</a>
+          </div>
           <table class="table">
-            <caption>Số sản phẩm: <?= isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : "0" ?></caption>
             <thead>
               <tr>
                 <td>STT</td>
@@ -45,7 +47,7 @@
                   <tr>
                     <td><?= $i ?></td>
                     <td>
-                      <img src="./assets/images/<?= $p["image"] ?>" class="object-fit-cover" width="100px" height="100" alt="">
+                      <img src="./assets/images/<?= $p["image"] ?>" class="object-fit-cover" width="100" height="100" alt="">
                     </td>
                     <td>
                       <div class="line__clamp" style="max-width: 158px;">
@@ -95,7 +97,8 @@
                 </ul>
               </div>
               <div class="d-flex align-items-center justify-content-between mt-4">
-                <a href="index.php" class="btn btn-danger text-uppercase">Tiếp tục mua hàng</a>
+                <a href="index.php" class="btn btn-outline-primary rounded-0 text-uppercase">Tiếp tục mua hàng</a>
+                <a href="./php/checkout.php" class="btn btn-primary rounded-0 text-uppercase <?= count($_SESSION["cart"]) == 0 ? 'disabled' : '' ?>">Đặt hàng</a>
               </div>
             </div>
           </div>

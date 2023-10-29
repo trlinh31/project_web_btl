@@ -33,6 +33,7 @@ button,
 input,
 textarea {
   font-family: 'Inter', sans-serif;
+  border-radius: 0px !important;
 }
 textarea {
   resize: none;
@@ -57,6 +58,9 @@ a:hover {
 }
 li {
   list-style: none;
+}
+.card {
+  border-radius: 0px !important;
 }
 .error-text {
   color: red;

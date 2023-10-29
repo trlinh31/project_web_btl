@@ -42,7 +42,7 @@
               <small class="fw-light fs-6 text-decoration-line-through px-2 <?= $product["discount"] == 0 ? 'd-none' : '' ?>" style="opacity: 0.6">
                 <?= number_format($product["price"], 0, '', '.') ?>
               </small>
-              <span class="badge bg-danger <?= $product["discount"] == 0 ? 'd-none' : '' ?>">-<?= $product["discount"] ?>%</span>
+              <span class="badge rounded-0 bg-danger <?= $product["discount"] == 0 ? 'd-none' : '' ?>">-<?= $product["discount"] ?>%</span>
             </h5>
           </div>
           <div class="mb-3">
@@ -55,7 +55,7 @@
             </p>
           </div>
           <div class="d-flex column-gap-3">
-            <button class="add-to-cart btn btn-primary rounded-0" data-id="<?= $product["id"] ?>" <?= $product["quantity"] == 0 ? "disabled" : "" ?> title="Thêm vào giỏ hàng">
+            <button class="add-to-cart btn btn-primary rounded-0" data-id="<?= $product["id"] ?>" title="Thêm vào giỏ hàng">
               Thêm vào giỏ
             </button>
           </div>

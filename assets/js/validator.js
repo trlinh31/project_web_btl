@@ -1,9 +1,9 @@
-function validateEmail(email) {
+function isEmail(email) {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
 
-function validatePhoneNumber(number) {
+function isPhoneNumber(number) {
   return /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(number);
 }
 
@@ -34,7 +34,7 @@ function validateFormLogin() {
   }
 
   if (password.length == 0) {
-    showErrorMessage(usernameInput, 'Vui lòng nhập mật khẩu');
+    showErrorMessage(passwordInput, 'Vui lòng nhập mật khẩu');
   }
 
   const errorInputs = document.querySelectorAll('.form-group .error');
@@ -58,7 +58,7 @@ function validateFormComment() {
     showErrorMessage(customerNameInput, 'Vui lòng nhập họ và tên');
   }
 
-  if (!validatePhoneNumber(customerPhone)) {
+  if (!isPhoneNumber(customerPhone)) {
     showErrorMessage(customerPhoneInput, 'Số điện thoại không hợp lệ');
   }
 
@@ -122,11 +122,11 @@ function validateFormRegister() {
     showErrorMessage(usernameInput, 'Vui lòng nhập tên đăng nhập');
   }
 
-  if (!validateEmail(email)) {
+  if (!isEmail(email)) {
     showErrorMessage(emailInput, 'Email không hợp lệ');
   }
 
-  if (!validatePhoneNumber(phone)) {
+  if (!isPhoneNumber(phone)) {
     showErrorMessage(phoneInput, 'Số điện thoại không hợp lệ');
   }
 

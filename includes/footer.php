@@ -4,6 +4,7 @@
       <div class="col-6">
         <h6 class="text-primary text-uppercase fw-bold mb-2">Nhóm 2</h6>
         <p style="font-size: 14px;">Đề tài: <strong>Xây dựng Website bán nội thất</strong></p>
+        <a href="./view_order.php" class="text-white text-decoration-none" style="font-size: 14px;">Xem thông tin đơn đặt hàng</a>
       </div>
       <div class="col-6">
         <h6 class="text-primary text-uppercase fw-bold mb-2">Danh sách thành viên - Ngày sinh</h6>

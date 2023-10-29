@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
   if ($db->checkLogin($username, $password)) {
     $user = $db->getUserInformation($username, $password);
+    $_SESSION["user"]["id"] = $user["id"];
     $_SESSION["user"]["full_name"] = $user["full_name"];
     $_SESSION["user"]["email"] = $user["email"];
     $_SESSION["user"]["phone"] = $user["phone"];

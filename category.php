@@ -44,7 +44,7 @@
               <div class="card shadow overflow-hidden">
                 <div class="card-body position-relative">
                   <div class="position-absolute top-0 start-0 <?= $p["discount"] == 0 ? 'd-none' : '' ?>">
-                    <span class="badge rounded bg-danger ms-2 mt-2">-<?= $p["discount"] ?>%</span>
+                    <span class="badge rounded-0 bg-danger ms-2 mt-2">-<?= $p["discount"] ?>%</span>
                   </div>
                   <img src="./assets/images/<?= $p["image"] ?>" class="card-img-top" height="181" loading="lazy" alt="..." />
                   <p class="card-title">
