@@ -20,24 +20,24 @@
     include_once("./includes/banner.php");
     include_once("./includes/messenger.php");
     ?>
-    <section class="mb-5">
+    <section class="py-5 mb-5 bg-body-tertiary">
       <div class="container">
         <div class="row">
-          <div class="col-4 position-relative">
-            <img src="./assets/images/sofa_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
-            <div class="position-absolute top-50 start-50 translate-middle">
+          <div class="small__banner col-4 position-relative">
+            <img src="./assets/images/sofa_banner.jpg" class="position-relative object-fit-cover h-100" width="100%" loading="lazy" alt="" />
+            <div class="position-absolute top-0 end-0 me-4 mt-4">
               <h1 class="text-white">SOFA</h1>
             </div>
           </div>
-          <div class="col-4 position-relative">
-            <img src="./assets/images/ghe_an_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
-            <div class="carousel-caption rounded-4 position-absolute top-50 start-50 translate-middle">
+          <div class="small__banner col-4 position-relative">
+            <img src="./assets/images/ghe_an_banner.jpg" class="position-relative object-fit-cover h-100" width="100%" loading="lazy" alt="" />
+            <div class="position-absolute top-0 end-0 me-4 mt-4">
               <h1 class="text-white">Ghế Ăn</h1>
             </div>
           </div>
-          <div class="col-4 position-relative">
-            <img src="./assets/images/giuong_banner.jpg" class="object-fit-cover h-100" width="100%" loading="lazy" alt="" />
-            <div class="carousel-caption rounded-4 position-absolute top-50 start-50 translate-middle">
+          <div class="small__banner col-4 position-relative">
+            <img src="./assets/images/giuong_banner.jpg" class="position-relative object-fit-cover h-100" width="100%" loading="lazy" alt="" />
+            <div class="position-absolute top-0 end-0 me-4 mt-4">
               <h1 class="text-white">Giường</h1>
             </div>
           </div>

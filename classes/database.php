@@ -3,7 +3,6 @@ define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_NAME", "noi_that");
-
 class Database
 {
   private $conn = null;
@@ -13,6 +12,7 @@ class Database
     if ($this->conn->connect_error) {
       die("Kết nối cơ sở dữ liệu thất bại");
     }
+    $this->conn->set_charset("utf8");
   }
   public function __destruct()
   {

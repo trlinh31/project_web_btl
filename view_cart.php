@@ -24,26 +24,28 @@
         <div class="col-8">
           <div class="d-flex align-items-end justify-content-between mb-4">
             <h4 class="text-uppercase">Giỏ hàng của bạn (<?= isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : "0" ?>)</h4>
-            <a href="#" class="text-uppercase text-decoration-none">Xoá giỏ hàng</a>
+            <a href="./php/delete_cart.php" class="text-uppercase text-decoration-none <?= isset($_SESSION["cart"]) ? '' : 'd-none' ?>" onclick="return confirm('Bạn có chắc muốn xoá toàn bộ giỏ hàng ?');">Xoá giỏ hàng</a>
           </div>
-          <table class="table">
-            <thead>
-              <tr>
-                <td>STT</td>
-                <td>Ảnh sản phẩm</td>
-                <td>Tên sản phẩm</td>
-                <td>Số lượng</td>
-                <td>Thành tiền</td>
-                <td>Xoá sản phẩm</td>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              if (isset($_SESSION["cart"])) :
+          <?php
+          if (isset($_SESSION["cart"]) && !empty($_SESSION["cart"])) :
+          ?>
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>STT</td>
+                  <td>Ảnh sản phẩm</td>
+                  <td>Tên sản phẩm</td>
+                  <td>Số lượng</td>
+                  <td>Thành tiền</td>
+                  <td>Xoá sản phẩm</td>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
                 $i = 1;
                 foreach ($_SESSION["cart"] as $p) :
                   $total += $p["price"] * $p["quantity"];
-              ?>
+                ?>
                   <tr>
                     <td><?= $i ?></td>
                     <td>
@@ -70,11 +72,12 @@
                       </a>
                     </td>
                   </tr>
-              <?php $i++;
+                <?php $i++;
                 endforeach;
-              endif; ?>
-            </tbody>
-          </table>
+                ?>
+              </tbody>
+            </table>
+          <?php endif; ?>
         </div>
         <div class="col-4">
           <div class="card">
@@ -98,7 +101,7 @@
               </div>
               <div class="d-flex align-items-center justify-content-between mt-4">
                 <a href="index.php" class="btn btn-outline-primary rounded-0 text-uppercase">Tiếp tục mua hàng</a>
-                <a href="./php/checkout.php" class="btn btn-primary rounded-0 text-uppercase <?= count($_SESSION["cart"]) == 0 ? 'disabled' : '' ?>">Đặt hàng</a>
+                <a href="./php/checkout.php" class="btn btn-primary rounded-0 text-uppercase <?= count($_SESSION["cart"]) == 0 ? 'disabled' : '' ?>" onclick="return confirm('Xác nhận đơn hàng');">Đặt hàng</a>
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@
           </div>
         </form>
       </div>
-      <div class="col-lg-3 text-end d-none d-lg-block">
+      <div class="col-lg-3 text-end">
         <div class="list-inline mt-3">
           <?php
           if (isset($_SESSION["user"])) {
