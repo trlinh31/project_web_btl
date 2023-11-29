@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $phone = $_POST["phone"];
   $address = $_POST["address"];
   $password = $_POST["password"];
+  $passwordHash = password_hash($password, PASSWORD_DEFAULT);
   $confirm = $_POST["confirm"];
   if ($db->checkUserExist($username, $email)) {
     $_SESSION["notification"] = "Tên tài khoản hoặc email đã tồn tại";
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db->insertUser([
       "full_name" => $full_name,
       "username" => $username,
-      "password" => $password,
+      "password" => $passwordHash,
       "email" => $email,
       "phone" => $phone,
       "address" => $address

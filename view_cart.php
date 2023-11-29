@@ -101,7 +101,7 @@
               </div>
               <div class="d-flex align-items-center justify-content-between mt-4">
                 <a href="index.php" class="btn btn-outline-primary rounded-0 text-uppercase">Tiếp tục mua hàng</a>
-                <a href="./php/checkout.php" class="btn btn-primary rounded-0 text-uppercase <?= count($_SESSION["cart"]) == 0 ? 'disabled' : '' ?>" onclick="return confirm('Xác nhận đơn hàng');">Đặt hàng</a>
+                <a href="./php/checkout.php" class="btn btn-primary rounded-0 text-uppercase <?= isset($_SESSION["cart"]) && count($_SESSION["cart"]) > 0 ? '' : 'disabled' ?>" onclick="return confirm('Xác nhận đơn hàng');">Đặt hàng</a>
               </div>
             </div>
           </div>

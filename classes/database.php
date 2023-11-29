@@ -148,11 +148,11 @@ class Database
     $this->insert("contacts", $data, "sssss");
   }
 
-  public function checkLogin($username, $password)
+  public function checkLogin($username)
   {
-    $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+    $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
@@ -176,11 +176,11 @@ class Database
   {
     $this->insert("users", $data, "ssssss");
   }
-  public function getUserInformation($username, $password)
+  public function getUserInformation($username)
   {
-    $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+    $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc();
@@ -209,7 +209,10 @@ class Database
   public function viewOrderDetail($id)
   {
     $data = array();
-    $sql = "SELECT * FROM `order_product` INNER JOIN orders_detail ON orders_detail.id = order_product.order_id INNER JOIN products ON products.id = order_product.product_id WHERE orders_detail.user_id = ?";
+    $sql = "SELECT * FROM `order_product` 
+    INNER JOIN orders_detail ON orders_detail.id = order_product.order_id 
+    INNER JOIN products ON products.id = order_product.product_id 
+    WHERE orders_detail.user_id = ?";
     $stmt = $this->conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
